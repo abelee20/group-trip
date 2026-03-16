@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Group Trip — June 18–20</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --cream: #f7f4ee;
+    --sand: #e8e2d5;
+    --rust: #c24e2a;
+    --rust-light: #f0ded7;
+    --gold: #b8935a;
+    --muted: #7a7670;
+    --card-bg: #ffffff;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 40px 24px 60px;
+  }
+
+  /* ─── Header ─────────────────────────────────── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 6vw, 62px);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+
+  header h1 em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .header-meta {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .meta-chip {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .meta-chip::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  .rule {
+    width: 48px;
+    height: 2px;
+    background: var(--rust);
+    margin: 20px auto 0;
+  }
+
+  /* ─── Grid ────────────────────────────────────── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ─── Card ────────────────────────────────────── */
+  .card {
+    background: var(--card-bg);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .card-accent {
+    height: 4px;
+    background: var(--sand);
+  }
+
+  .card.featured .card-accent { background: var(--rust); }
+  .card.c-teal .card-accent { background: #2a8c7a; }
+  .card.c-navy .card-accent { background: #2d4a7a; }
+  .card.c-olive .card-accent { background: #6b7c47; }
+  .card.c-indigo .card-accent { background: #4a3d8f; }
+  .card.c-amber .card-accent { background: var(--gold); }
+
+  .card-body {
+    padding: 22px 22px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+
+  .destination {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  .price-badge {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--cream);
+    border: 1px solid var(--sand);
+    border-radius: 3px;
+    padding: 4px 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .card.featured .price-badge { background: var(--rust-light); border-color: var(--rust); color: var(--rust); }
+
+  .tagline {
+    font-size: 12.5px;
+    color: var(--muted);
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
+  .details-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .detail {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .detail-icon {
+    font-size: 12px;
+  }
+
+  .pros-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .pros {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+  }
+
+  .pros li {
+    font-size: 12.5px;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.4;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .pros li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--rust);
+    font-size: 10px;
+    top: 1px;
+  }
+
+  .highlight {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: var(--cream);
+    border-left: 3px solid var(--sand);
+    border-radius: 0 3px 3px 0;
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .card.featured .highlight { border-left-color: var(--rust); background: var(--rust-light); color: #7a3520; }
+  .card.c-teal .highlight { border-left-color: #2a8c7a; }
+  .card.c-navy .highlight { border-left-color: #2d4a7a; }
+  .card.c-olive .highlight { border-left-color: #6b7c47; }
+  .card.c-indigo .highlight { border-left-color: #4a3d8f; }
+  .card.c-amber .highlight { border-left-color: var(--gold); }
+
+  /* ─── Footer ──────────────────────────────────── */
+  footer {
+    text-align: center;
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 1px solid var(--sand);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  footer strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  @media print {
+    body { padding: 20px; background: white; }
+    .card:hover { transform: none; }
+  }
+
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="eyebrow">Philadelphia · 8 People · 4 Couples</span>
+  <h1>Where are we<br>going this <em>June?</em></h1>
+  <div class="header-meta">
+    <span class="meta-chip">June 18–20, 2026</span>
+    <span class="meta-chip">Drive or fly from Philly</span>
+  </div>
+  <div class="rule"></div>
+</header>
+
+<div class="grid">
+
+  <!-- NEWPORT -->
+  <div class="card featured">
+    <div class="card-accent"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <div class="destination">Newport, RI</div>
+        <div class="price-badge">$325–485 / person</div>
+      </div>
+      <p class="tagline">New England's sailing capital — cobblestone waterfront, Gilded Age mansions, world-class seafood</p>
+      <div class="details-row">
+        <span class="detail"><span class="detail-icon">🚗</span> 3.5 hrs drive</span>
+        <span class="detail"><span class="detail-icon">🏠</span> Big Airbnb downtown</span>
+        <span class="detail"><span class="detail-icon">⚓</span> Sailing charter</span>
+      </div>
+      <span class="pros-label">Why it's great</span>
+      <ul class="pros">
+        <li>Argia schooner sailing cruise — perfect group activity</li>
+        <li>Thames St & Bowen's Wharf: elite waterfront dining + bars</li>
+        <li>Cliff Walk: 3.5-mile ocean trail past Vanderbilt mansions</li>
+        <li>Polo matches every Saturday in June — free to watch</li>
+        <li>Completely different feel from anywhere else on this list</li>
+      </ul>
+      <div class="highlight">The vibe: cobblestones, sailboats, oysters, and sunset drinks on the harbor. Nothing like the Jersey Shore.</div>
+    </div>
+  </div>
+
+  <!-- ANNAPOLIS -->
+  <div class="card c-teal">
+    <div class="card-accent"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <div class="destination">Annapolis, MD</div>
+        <div class="price-badge">$300–440 / person</div>
+      </div>
+      <p class="tagline">America's sailing capital — peak crab season, Naval Academy, Chesapeake waterfront charm</p>
+      <div class="details-row">
+        <span class="detail"><span class="detail-icon">🚗</span> 2.5 hrs drive</span>
+        <span class="detail"><span class="detail-icon">🏠</span> Big Airbnb downtown</span>
+        <span class="detail"><span class="detail-icon">🦀</span> Peak blue crab</span>
+      </div>
+      <span class="pros-label">Why it's great</span>
+      <ul class="pros">
+        <li>June = peak Maryland blue crab season — messy crab feast is the move</li>
+        <li>Woodwind schooner sailing charter right off City Dock</li>
+        <li>Walkable historic district: cobblestones, waterfront, great restaurants</li>
+        <li>Ego Alley: watch mega-yachts cruise through downtown</li>
+        <li>Easiest drive on the list — more time when you arrive</li>
+      </ul>
+      <div class="highlight">Newport energy, Chesapeake soul. If you want to eat crabs with wooden mallets on a waterfront deck, this is it.</div>
+    </div>
+  </div>
+
+  <!-- HUDSON VALLEY -->
+  <div class="card c-olive">
+    <div class="card-accent"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <div class="destination">Hudson Valley, NY</div>
+        <div class="price-badge">$300–440 / person</div>
+      </div>
+      <p class="tagline">Artsy river towns, farm-to-table dining, wineries, rolling countryside — Hudson & Rhinebeck</p>
+      <div class="details-row">
+        <span class="detail"><span class="detail-icon">🚗</span> 3–3.5 hrs drive</span>
+        <span class="detail"><span class="detail-icon">🏠</span> Countryside Airbnb</span>
+        <span class="detail"><span class="detail-icon">🍷</span> Wineries + galleries</span>
+      </div>
+      <span class="pros-label">Why it's great</span>
+      <ul class="pros">
+        <li>Hudson town: incredible restaurants punching way above their size</li>
+        <li>Rhinebeck: charming, walkable, great food and boutique shopping</li>
+        <li>Wine + farm-to-table scene that rivals Charlottesville or Napa</li>
+        <li>Scenic countryside farmhouse Airbnb — beautiful group house vibe</li>
+        <li>Dia:Beacon modern art museum as a day add-on</li>
+      </ul>
+      <div class="highlight">The most laid-back option. Long dinners, beautiful scenery, and zero tourist crowds. Feels genuinely local.</div>
+    </div>
+  </div>
+
+  <!-- LAKE WALLENPAUPACK -->
+  <div class="card c-navy">
+    <div class="card-accent"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <div class="destination">Lake Wallenpaupack, PA</div>
+        <div class="price-badge">$200–315 / person</div>
+      </div>
+      <p class="tagline">5,700-acre Pocono lake — private dock, pontoon rentals, jet skis, fire pit nights</p>
+      <div class="details-row">
+        <span class="detail"><span class="detail-icon">🚗</span> 2–2.5 hrs drive</span>
+        <span class="detail"><span class="detail-icon">🏠</span> Lakefront Airbnb w/ dock</span>
+        <span class="detail"><span class="detail-icon">⛵</span> Full boat rentals</span>
+      </div>
+      <span class="pros-label">Why it's great</span>
+      <ul class="pros">
+        <li>Closest and cheapest option — most budget left for activities</li>
+        <li>Pontoon boats, slide boats, Tiki boat, jet skis all rentable</li>
+        <li>Mid-June = opening weekend of full summer boat rental season</li>
+        <li>Private dock Airbnb = swim off the dock, grill on the deck</li>
+        <li>Hawley town nearby: Wallenpaupack Brewing + restaurants</li>
+      </ul>
+      <div class="highlight">The "lake house" trip. Less about exploring a town, more about waking up on the water every morning and not wanting to leave.</div>
+    </div>
+  </div>
+
+  <!-- CHICAGO -->
+  <div class="card c-amber">
+    <div class="card-accent"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <div class="destination">Chicago, IL</div>
+        <div class="price-badge">$500–680 / person</div>
+      </div>
+      <p class="tagline">World-class food city, iconic architecture, rooftop bars, deep-dish — 2 hr nonstop from PHL</p>
+      <div class="details-row">
+        <span class="detail"><span class="detail-icon">✈️</span> 2 hrs fly from PHL</span>
+        <span class="detail"><span class="detail-icon">🏠</span> Airbnb or hotel split</span>
+        <span class="detail"><span class="detail-icon">🍕</span> Best food city in the US</span>
+      </div>
+      <span class="pros-label">Why it's great</span>
+      <ul class="pros">
+        <li>Flights as low as $227 r/t on American/United — best flight value on this list</li>
+        <li>Wicker Park, West Loop, River North: neighborhoods with insane restaurant density</li>
+        <li>Riverwalk + rooftop bar scene is perfect in June</li>
+        <li>Architecture boat tour is one of the best group activities anywhere</li>
+        <li>Genuinely feels like a "we went somewhere" trip — biggest city option</li>
+      </ul>
+      <div class="highlight">Arguably the best food city in the country. Cheaper flights than Nashville with more to do. June in Chicago is perfect — warm, lively, and the city is in full summer swing.</div>
+    </div>
+  </div>
+
+  <!-- NYC 1 NIGHT -->
+  <div class="card c-indigo">
+    <div class="card-accent"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <div class="destination">New York City <span style="font-size:14px; font-weight:400; font-family:'DM Sans',sans-serif;">(1 night)</span></div>
+        <div class="price-badge">$380–625 / person</div>
+      </div>
+      <p class="tagline">Friday morning in, Saturday afternoon out — one big night done right, no driving required</p>
+      <div class="details-row">
+        <span class="detail"><span class="detail-icon">🚌</span> Bus/train ~1.5 hrs</span>
+        <span class="detail"><span class="detail-icon">🏨</span> Hotel split (1 night)</span>
+        <span class="detail"><span class="detail-icon">🌆</span> Fri AM → Sat PM</span>
+      </div>
+      <span class="pros-label">Why it works</span>
+      <ul class="pros">
+        <li>Arrive Friday morning → full day to explore neighborhoods + lunch spots</li>
+        <li>Big group dinner Friday night → rooftop drinks → proper night out</li>
+        <li>Saturday: brunch, High Line or Chelsea Market, home by afternoon</li>
+        <li>Bus or Amtrak from 30th St — skip the driving and parking headache</li>
+        <li>Spend more per day on one great night vs. stretching budget thin</li>
+      </ul>
+      <div class="highlight">The lean, high-impact option. One legendary Friday in the city — you're back home Saturday with the rest of the weekend free.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer></footer>
+
+</body>
+</html>
